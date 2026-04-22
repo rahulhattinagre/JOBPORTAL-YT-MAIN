@@ -15,7 +15,7 @@ const fileFilter = (req, file, cb) => {
         cb(null, true);
     } else {
         // This is the error message that was triggering on your frontend
-        cb(new Error("Invalid file type. Only JPEG, PNG, and PDF are allowed!"), false);
+        cb(new Error("Invalid file type! Only JPEG, PNG, JPG, and PDF allowed (max 10MB)."), false);
     }
 };
 
@@ -23,7 +23,7 @@ const fileFilter = (req, file, cb) => {
 export const singleUpload = multer({ 
     storage,
     fileFilter,
-    limits: { fileSize: 5 * 1024 * 1024 } // Optional: 5MB limit
+    limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
 }).single("file");
 
 export default singleUpload;
